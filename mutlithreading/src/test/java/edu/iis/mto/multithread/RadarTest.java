@@ -39,5 +39,21 @@ class RadarTest {
         radar.notice(enemyMissile);
         verify(batteryMock, times(0)).launchPatriot(enemyMissile);
     }
+    @RepeatedTest(10)
+    void launch1timeWhenNotice1() {
+        BetterRadar radar = new BetterRadar(batteryMock, 1);
+        radar.executor = executorMock;
+        Scud enemyMissile = new Scud();
+        radar.notice(enemyMissile);
+        verify(batteryMock, times(1)).launchPatriot(enemyMissile);
+    }
+    @RepeatedTest(10)
+    void launch2timeWhenNotice2() {
+        BetterRadar radar = new BetterRadar(batteryMock, 2);
+        radar.executor = executorMock;
+        Scud enemyMissile = new Scud();
+        radar.notice(enemyMissile);
+        verify(batteryMock, times(2)).launchPatriot(enemyMissile);
+    }
 
 }
